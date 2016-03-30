@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 /**
@@ -14,7 +15,8 @@ public  class FineWebview extends LinearLayout
 {
     private Context mContext;
     private WebView webView;
-    private LinearLayout bar;
+    private LinearLayout bottomToolbar;
+    private String url = "";
     public FineWebview(Context context)
     {
         super(context);
@@ -36,13 +38,40 @@ public  class FineWebview extends LinearLayout
             return;
         }
         View v = LayoutInflater.from(mContext).inflate(R.layout.layout_finewebview,null);
-        webView = (WebView)findViewById(R.id.layout_fine_webview_webview);
-        bar = (LinearLayout)findViewById(R.id.layout_fine_webview_bar);
+        webView = (WebView)v.findViewById(R.id.layout_fine_webview_webview);
+        bottomToolbar = (LinearLayout)v.findViewById(R.id.layout_fine_webview_bar);
         addView(v);
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void hideBottomToolBarVisiblity()
+    {
+
+        bottomToolbar.setVisibility(View.GONE);
     }
     public WebView getWebView()
     {
         return webView;
+    }
+    protected void initWebview()
+    {
+        WebViewClient viewClient = new WebViewClient();
+        webView.setWebViewClient(new WebViewClient()
+        {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+              url = getUrl() ;
+                view.loadUrl(url);
+                return true;
+            }
+        });
     }
 
 }
