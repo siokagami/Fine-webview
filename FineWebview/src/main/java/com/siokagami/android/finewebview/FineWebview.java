@@ -7,6 +7,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
  * Created by SiO鏡 on 2016/3/30.
@@ -16,7 +17,7 @@ public  class FineWebview extends LinearLayout
     private Context mContext;
     private WebView webView;
     private LinearLayout bottomToolbar;
-    private String url = "";
+    private String url;
     public FineWebview(Context context)
     {
         super(context);
@@ -29,6 +30,7 @@ public  class FineWebview extends LinearLayout
         super(context,attrs);
         this.mContext = context;
         initView();
+
     }
 
     private void initView()
@@ -41,14 +43,18 @@ public  class FineWebview extends LinearLayout
         webView = (WebView)v.findViewById(R.id.layout_fine_webview_webview);
         bottomToolbar = (LinearLayout)v.findViewById(R.id.layout_fine_webview_bar);
         addView(v);
+        initWebview();
     }
 
-    public String getUrl() {
-        return url;
+    public String getUrl()
+    {
+    return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(String url)
+    {
         this.url = url;
+        bindData();
     }
 
     public void hideBottomToolBarVisiblity()
@@ -62,16 +68,18 @@ public  class FineWebview extends LinearLayout
     }
     protected void initWebview()
     {
-        WebViewClient viewClient = new WebViewClient();
         webView.setWebViewClient(new WebViewClient()
         {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-              url = getUrl() ;
                 view.loadUrl(url);
                 return true;
             }
+
         });
     }
-
+    protected void bindData()
+    {
+        webView.loadUrl(url);
+    }
 }
