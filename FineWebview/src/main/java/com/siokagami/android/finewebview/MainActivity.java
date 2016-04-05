@@ -16,18 +16,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fineWebview = (FineWebview)findViewById(R.id.test);
-        webView = (WebView)findViewById(R.id.native_text);
         fineWebview.setUrl("http://www.baidu.com");
         fineWebview.hideBottomToolBarVisiblity();
-//        webView.loadUrl("http://www.baidu.com");
-//        webView.setWebViewClient(new WebViewClient()
-//        {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                view.loadUrl(url);
-//                return true;
-//            }
-//        });
+        fineWebview.enableJavaScript();
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.siokagami.android.finewebview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -16,6 +18,8 @@ public  class FineWebview extends LinearLayout
 {
     private Context mContext;
     private WebView webView;
+    private WebviewClientBase webviewClientBase = new WebviewClientBase();
+    private WebSettings webSettings;
     private LinearLayout bottomToolbar;
     private String url;
     public FineWebview(Context context)
@@ -41,6 +45,7 @@ public  class FineWebview extends LinearLayout
         }
         View v = LayoutInflater.from(mContext).inflate(R.layout.layout_finewebview,null);
         webView = (WebView)v.findViewById(R.id.layout_fine_webview_webview);
+
         bottomToolbar = (LinearLayout)v.findViewById(R.id.layout_fine_webview_bar);
         addView(v);
         initWebview();
@@ -62,24 +67,25 @@ public  class FineWebview extends LinearLayout
 
         bottomToolbar.setVisibility(View.GONE);
     }
+    @SuppressLint("SetJavaScriptEnabled")
+    public void enableJavaScript()
+    {
+        webSettings.setJavaScriptEnabled(true);
+    }
     public WebView getWebView()
     {
         return webView;
     }
     protected void initWebview()
     {
-        webView.setWebViewClient(new WebViewClient()
-        {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
+        webView.setWebViewClient(webviewClientBase);
+        webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(false);
 
-        });
     }
     protected void bindData()
     {
         webView.loadUrl(url);
     }
 }
+
