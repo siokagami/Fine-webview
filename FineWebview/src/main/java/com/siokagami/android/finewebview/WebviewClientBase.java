@@ -3,6 +3,7 @@ package com.siokagami.android.finewebview;
 import android.graphics.Bitmap;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -11,6 +12,13 @@ import android.webkit.WebViewClient;
  */
 public class WebviewClientBase extends WebViewClient
 {
+    private WebSettings webSettings;
+
+    public WebviewClientBase(WebSettings webSettings)
+    {
+        this.webSettings = webSettings;
+    }
+
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         return super.shouldOverrideUrlLoading(view, url);
@@ -24,6 +32,7 @@ public class WebviewClientBase extends WebViewClient
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
+        webSettings.setLoadsImagesAutomatically(true);
     }
 
     @Override

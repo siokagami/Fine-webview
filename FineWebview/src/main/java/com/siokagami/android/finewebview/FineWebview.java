@@ -2,6 +2,7 @@ package com.siokagami.android.finewebview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +19,8 @@ public  class FineWebview extends LinearLayout
 {
     private Context mContext;
     private WebView webView;
-    private WebviewClientBase webviewClientBase = new WebviewClientBase();
     private WebSettings webSettings;
+    private WebviewClientBase webviewClientBase;
     private LinearLayout bottomToolbar;
     private String url;
     public FineWebview(Context context)
@@ -45,7 +46,8 @@ public  class FineWebview extends LinearLayout
         }
         View v = LayoutInflater.from(mContext).inflate(R.layout.layout_finewebview,null);
         webView = (WebView)v.findViewById(R.id.layout_fine_webview_webview);
-
+        webSettings = webView.getSettings();
+        webviewClientBase = new WebviewClientBase(webSettings);
         bottomToolbar = (LinearLayout)v.findViewById(R.id.layout_fine_webview_bar);
         addView(v);
         initWebview();
@@ -76,10 +78,19 @@ public  class FineWebview extends LinearLayout
     {
         return webView;
     }
+
     protected void initWebview()
     {
         webView.setWebViewClient(webviewClientBase);
-        webSettings = webView.getSettings();
+
+        if(Build.VERSION.SDK_INT >= 19)
+        {
+            webSettings.setLoadsImagesAutomatically(true);
+        }
+        else
+        {
+            webSettings.setLoadsImagesAutomatically(false);
+        }
         webSettings.setJavaScriptEnabled(false);
 
     }
