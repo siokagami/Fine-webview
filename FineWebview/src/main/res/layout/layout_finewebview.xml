@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                               xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
                                                android:orientation="vertical"
                                                android:layout_width="fill_parent"
                                                android:layout_height="fill_parent">
 
+
     <LinearLayout
         android:id="@+id/layout_fine_webview_bar"
         android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_below="@+id/layout_fine_webview_webview"
-        app:layout_heightPercent="8%"
-        app:layout_widthPercent="100%"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
         android:background="#66ccff"
         >
         <Button
@@ -41,8 +40,6 @@
         android:id="@+id/layout_fine_webview_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_heightPercent="92%"
-        app:layout_widthPercent="100%"/>
-
-
-</android.support.percent.PercentRelativeLayout>
+        android:layout_above="@id/layout_fine_webview_bar"
+        />
+</RelativeLayout>
