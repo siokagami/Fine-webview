@@ -2,6 +2,7 @@ package com.siokagami.android.finewebview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -48,7 +49,7 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         {
             return;
         }
-        View v = LayoutInflater.from(mContext).inflate(R.layout.layout_finewebview,null);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.layout_finewebview, null);
         webView = (WebView)v.findViewById(R.id.layout_fine_webview_webview);
         webSettings = webView.getSettings();
         webviewClientBase = new WebviewClientBase(webSettings);
@@ -59,16 +60,10 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         layoutFineWebviewButtonGoBack.setOnClickListener(this);
         layoutFineWebviewButtonGoforward.setOnClickListener(this);
         layoutFineWebviewButtonRefresh.setOnClickListener(this);
-
         addView(v);
+        initWebviewBar();
         initWebview();
     }
-
-    public String getUrl()
-    {
-    return url;
-    }
-
     public void setUrl(String url)
     {
         this.url = url;
@@ -104,6 +99,16 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         }
         webSettings.setJavaScriptEnabled(false);
 
+    }
+    protected void initWebviewBar()
+    {
+        Typeface fontFace = Typeface.createFromAsset(mContext.getAssets(), "iconfont.ttf");
+        layoutFineWebviewButtonGoBack.setTypeface(fontFace);
+        layoutFineWebviewButtonGoBack.setText(R.string.bar_goback);
+        layoutFineWebviewButtonGoforward.setTypeface(fontFace);
+        layoutFineWebviewButtonGoforward.setText(R.string.bar_goforward);
+        layoutFineWebviewButtonRefresh.setTypeface(fontFace);
+        layoutFineWebviewButtonRefresh.setText(R.string.bar_refresh);
     }
     protected void bindData()
     {

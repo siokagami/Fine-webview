@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="bar_refresh">&#x3437;</string>
+    <string name="bar_goforward">&#xe640;</string>
+    <string name="bar_goback">&#xe63f;</string>
 </resources>
