@@ -3,12 +3,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
               android:orientation="vertical"
-              android:background="#66ccff"
+              android:background="#ffffff"
                 tools:context=".MainActivity">
     <com.siokagami.android.finewebview.FineWebview
 
         android:id="@+id/test"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="500dp">
     </com.siokagami.android.finewebview.FineWebview>
 </LinearLayout>

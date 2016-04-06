@@ -9,19 +9,23 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 /**
  * Created by SiO鏡 on 2016/3/30.
  */
-public  class FineWebview extends LinearLayout
+public  class FineWebview extends LinearLayout implements View.OnClickListener
 {
     private Context mContext;
     private WebView webView;
     private WebSettings webSettings;
     private WebviewClientBase webviewClientBase;
     private LinearLayout bottomToolbar;
+    private Button layoutFineWebviewButtonGoBack;
+    private Button layoutFineWebviewButtonGoforward;
+    private Button layoutFineWebviewButtonRefresh;
     private String url;
     public FineWebview(Context context)
     {
@@ -49,6 +53,13 @@ public  class FineWebview extends LinearLayout
         webSettings = webView.getSettings();
         webviewClientBase = new WebviewClientBase(webSettings);
         bottomToolbar = (LinearLayout)v.findViewById(R.id.layout_fine_webview_bar);
+        layoutFineWebviewButtonGoBack = (Button) v.findViewById(R.id.layout_fine_webview_button_goback);
+        layoutFineWebviewButtonGoforward = (Button) v.findViewById(R.id.layout_fine_webview_button_goforward);
+        layoutFineWebviewButtonRefresh = (Button) v.findViewById(R.id.layout_fine_webview_button_refresh);
+        layoutFineWebviewButtonGoBack.setOnClickListener(this);
+        layoutFineWebviewButtonGoforward.setOnClickListener(this);
+        layoutFineWebviewButtonRefresh.setOnClickListener(this);
+
         addView(v);
         initWebview();
     }
@@ -97,6 +108,27 @@ public  class FineWebview extends LinearLayout
     protected void bindData()
     {
         webView.loadUrl(url);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.layout_fine_webview_button_goforward:
+                if(webView.canGoForward()) {
+                    webView.goForward();
+                }
+                break;
+            case R.id.layout_fine_webview_button_refresh:
+                webView.reload();
+                break;
+            case R.id.layout_fine_webview_button_goback:
+                if(webView.canGoBack())
+                {
+                    webView.goBack();
+                }
+                break;
+        }
     }
 }
 
