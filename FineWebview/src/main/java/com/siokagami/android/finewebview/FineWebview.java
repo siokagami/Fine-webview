@@ -24,6 +24,7 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
     private WebView webView;
     private WebSettings webSettings;
     private WebviewClientBase webviewClientBase;
+    private WebviewChromeClientBase webviewChromeClientBase;
     private LinearLayout bottomToolbar;
     private TextView layoutFineWebviewButtonGoBack;
     private TextView layoutFineWebviewButtonGoforward;
@@ -54,6 +55,13 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         webView = (WebView)v.findViewById(R.id.layout_fine_webview_webview);
         webSettings = webView.getSettings();
         webviewClientBase = new WebviewClientBase(webSettings);
+        webviewChromeClientBase = new WebviewChromeClientBase();
+        webviewChromeClientBase.setChangeInterface(new WebviewChromeClientBase.ChangeInterface() {
+            @Override
+            public void progressChanged(int newProgress) {
+
+            }
+        });
         bottomToolbar = (LinearLayout)v.findViewById(R.id.layout_fine_webview_bar);
         layoutFineWebviewButtonGoBack = (TextView) v.findViewById(R.id.layout_fine_webview_button_goback);
         layoutFineWebviewButtonGoforward = (TextView) v.findViewById(R.id.layout_fine_webview_button_goforward);
