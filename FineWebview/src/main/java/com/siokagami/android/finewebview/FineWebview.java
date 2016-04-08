@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -24,9 +25,9 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
     private WebSettings webSettings;
     private WebviewClientBase webviewClientBase;
     private LinearLayout bottomToolbar;
-    private Button layoutFineWebviewButtonGoBack;
-    private Button layoutFineWebviewButtonGoforward;
-    private Button layoutFineWebviewButtonRefresh;
+    private TextView layoutFineWebviewButtonGoBack;
+    private TextView layoutFineWebviewButtonGoforward;
+    private TextView layoutFineWebviewButtonRefresh;
     private String url;
     public FineWebview(Context context)
     {
@@ -54,9 +55,9 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         webSettings = webView.getSettings();
         webviewClientBase = new WebviewClientBase(webSettings);
         bottomToolbar = (LinearLayout)v.findViewById(R.id.layout_fine_webview_bar);
-        layoutFineWebviewButtonGoBack = (Button) v.findViewById(R.id.layout_fine_webview_button_goback);
-        layoutFineWebviewButtonGoforward = (Button) v.findViewById(R.id.layout_fine_webview_button_goforward);
-        layoutFineWebviewButtonRefresh = (Button) v.findViewById(R.id.layout_fine_webview_button_refresh);
+        layoutFineWebviewButtonGoBack = (TextView) v.findViewById(R.id.layout_fine_webview_button_goback);
+        layoutFineWebviewButtonGoforward = (TextView) v.findViewById(R.id.layout_fine_webview_button_goforward);
+        layoutFineWebviewButtonRefresh = (TextView) v.findViewById(R.id.layout_fine_webview_button_refresh);
         layoutFineWebviewButtonGoBack.setOnClickListener(this);
         layoutFineWebviewButtonGoforward.setOnClickListener(this);
         layoutFineWebviewButtonRefresh.setOnClickListener(this);
