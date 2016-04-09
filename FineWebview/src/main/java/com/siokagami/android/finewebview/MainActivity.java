@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
         fineWebview = (FineWebview)findViewById(R.id.test);
         fineWebview.setUrl("http://www.baidu.com");
 //        fineWebview.hideBottomToolBarVisiblity();
-        fineWebview.enableJavaScript();
+//        fineWebview.enableJavaScript();
+//        fineWebview.setCacheMode(FineWebview.LOAD_CACHE_ONLY);
     }
 
     @Override

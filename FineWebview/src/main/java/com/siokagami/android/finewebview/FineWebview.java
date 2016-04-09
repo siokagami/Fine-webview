@@ -20,6 +20,11 @@ import android.widget.Toast;
  */
 public  class FineWebview extends LinearLayout implements View.OnClickListener
 {
+    public static final int LOAD_DEFAULT = -1;
+    public static final int LOAD_NORMAL = 0;
+    public static final int LOAD_CACHE_ELSE_NETWORK = 1;
+    public static final int LOAD_NO_CACHE = 2;
+    public static final int LOAD_CACHE_ONLY = 3;
     private Context mContext;
     private WebView webView;
     private WebSettings webSettings;
@@ -39,7 +44,7 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
 
     public FineWebview(Context context,AttributeSet attrs)
     {
-        super(context,attrs);
+        super(context, attrs);
         this.mContext = context;
         initView();
 
@@ -53,15 +58,6 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         }
         View v = LayoutInflater.from(mContext).inflate(R.layout.layout_finewebview, null);
         webView = (WebView)v.findViewById(R.id.layout_fine_webview_webview);
-        webSettings = webView.getSettings();
-        webviewClientBase = new WebviewClientBase(webSettings);
-        webviewChromeClientBase = new WebviewChromeClientBase();
-        webviewChromeClientBase.setChangeInterface(new WebviewChromeClientBase.ChangeInterface() {
-            @Override
-            public void progressChanged(int newProgress) {
-
-            }
-        });
         bottomToolbar = (LinearLayout)v.findViewById(R.id.layout_fine_webview_bar);
         layoutFineWebviewButtonGoBack = (TextView) v.findViewById(R.id.layout_fine_webview_button_goback);
         layoutFineWebviewButtonGoforward = (TextView) v.findViewById(R.id.layout_fine_webview_button_goforward);
@@ -79,11 +75,8 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         bindData();
     }
 
-    public void hideBottomToolBarVisiblity()
-    {
-
-        bottomToolbar.setVisibility(View.GONE);
-    }
+    public void hideBottomToolBarVisiblity() {bottomToolbar.setVisibility(View.GONE);}
+    public void setCacheMode(int cacheMode) {webSettings.setCacheMode(cacheMode);}
     @SuppressLint("SetJavaScriptEnabled")
     public void enableJavaScript()
     {
@@ -96,7 +89,17 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
 
     protected void initWebview()
     {
+        webSettings = webView.getSettings();
+        webviewClientBase = new WebviewClientBase(webSettings);
+        webviewChromeClientBase = new WebviewChromeClientBase();
+        webviewChromeClientBase.setChangeInterface(new WebviewChromeClientBase.ChangeInterface() {
+            @Override
+            public void progressChanged(int newProgress) {
+
+            }
+        });
         webView.setWebViewClient(webviewClientBase);
+        webView.setWebChromeClient(webviewChromeClientBase);
 
         if(Build.VERSION.SDK_INT >= 19)
         {
