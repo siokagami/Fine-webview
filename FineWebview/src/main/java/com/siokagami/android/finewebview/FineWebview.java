@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,9 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
     private TextView layoutFineWebviewButtonGoBack;
     private TextView layoutFineWebviewButtonGoforward;
     private TextView layoutFineWebviewButtonRefresh;
+    private TextView layoutFineWebviewButtonStop;
+
+
     private String url;
     public FineWebview(Context context)
     {
@@ -62,9 +66,11 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         layoutFineWebviewButtonGoBack = (TextView) v.findViewById(R.id.layout_fine_webview_button_goback);
         layoutFineWebviewButtonGoforward = (TextView) v.findViewById(R.id.layout_fine_webview_button_goforward);
         layoutFineWebviewButtonRefresh = (TextView) v.findViewById(R.id.layout_fine_webview_button_refresh);
+        layoutFineWebviewButtonStop = (TextView) v.findViewById(R.id.layout_fine_webview_button_stop);
         layoutFineWebviewButtonGoBack.setOnClickListener(this);
         layoutFineWebviewButtonGoforward.setOnClickListener(this);
         layoutFineWebviewButtonRefresh.setOnClickListener(this);
+        layoutFineWebviewButtonStop.setOnClickListener(this);
         addView(v);
         initWebviewBar();
         initWebview();
@@ -90,17 +96,29 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
     protected void initWebview()
     {
         webSettings = webView.getSettings();
+
         webviewClientBase = new WebviewClientBase(webSettings);
         webviewChromeClientBase = new WebviewChromeClientBase();
         webviewChromeClientBase.setChangeInterface(new WebviewChromeClientBase.ChangeInterface() {
             @Override
             public void progressChanged(int newProgress) {
+                switch (newProgress) {
+                    case 0:
+                        layoutFineWebviewButtonRefresh.setVisibility(VISIBLE);
+                        layoutFineWebviewButtonStop.setVisibility(GONE);
+                        break;
+                    case 100:
+                        layoutFineWebviewButtonRefresh.setVisibility(VISIBLE);
+                        layoutFineWebviewButtonStop.setVisibility(GONE);
+                        break;
+                    default:
+                        layoutFineWebviewButtonRefresh.setVisibility(GONE);
+                        layoutFineWebviewButtonStop.setVisibility(VISIBLE);
+                        break;
+                }
 
             }
         });
-        webView.setWebViewClient(webviewClientBase);
-        webView.setWebChromeClient(webviewChromeClientBase);
-
         if(Build.VERSION.SDK_INT >= 19)
         {
             webSettings.setLoadsImagesAutomatically(true);
@@ -110,6 +128,8 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
             webSettings.setLoadsImagesAutomatically(false);
         }
         webSettings.setJavaScriptEnabled(false);
+        webView.setWebViewClient(webviewClientBase);
+        webView.setWebChromeClient(webviewChromeClientBase);
 
     }
     protected void initWebviewBar()
@@ -121,6 +141,8 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         layoutFineWebviewButtonGoforward.setText(R.string.bar_goforward);
         layoutFineWebviewButtonRefresh.setTypeface(fontFace);
         layoutFineWebviewButtonRefresh.setText(R.string.bar_refresh);
+        layoutFineWebviewButtonStop.setTypeface(fontFace);
+        layoutFineWebviewButtonStop.setText(R.string.bar_stop);
     }
     protected void bindData()
     {
@@ -144,6 +166,9 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
                 {
                     webView.goBack();
                 }
+                break;
+            case R.id.layout_fine_webview_button_stop:
+                webView.stopLoading();
                 break;
         }
     }

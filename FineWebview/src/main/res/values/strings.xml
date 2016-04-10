@@ -6,4 +6,5 @@
     <string name="bar_refresh">&#x3437;</string>
     <string name="bar_goforward">&#xe640;</string>
     <string name="bar_goback">&#xe63f;</string>
+    <string name="bar_stop">&#xe724;</string>
 </resources>

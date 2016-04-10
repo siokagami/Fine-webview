@@ -43,6 +43,16 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/layout_fine_webview_button_stop"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:background="@drawable/bar_textview_bg"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
     </LinearLayout>
     <WebView
         android:id="@+id/layout_fine_webview_webview"
