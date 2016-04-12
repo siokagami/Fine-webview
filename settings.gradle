@@ -1,1 +1,1 @@
-include ':FineWebview', ':Finewebview-example'
+include ':FineWebview'
