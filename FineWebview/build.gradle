@@ -1,5 +1,27 @@
 apply plugin: 'com.android.library'
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'fine-webview'
 
+    publishedGroupId = 'com.siokagami.android'
+    libraryName = 'FineWebview'
+    artifact = 'fine-webview'
+
+    libraryDescription = 'android webview with toolbar'
+
+    siteUrl = 'https://github.com/siokagami/Fine-webview'
+    gitUrl = 'https://github.com/siokagami/Fine-webview.git'
+
+    libraryVersion = '0.5.0'
+
+    developerId = 'siokagami'
+    developerName = 'YiLun Xin'
+    developerEmail = 'zapitok@sina.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -8,7 +30,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "0.5.0"
     }
     buildTypes {
         release {
