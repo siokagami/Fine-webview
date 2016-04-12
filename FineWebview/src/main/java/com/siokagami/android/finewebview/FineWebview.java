@@ -2,6 +2,7 @@ package com.siokagami.android.finewebview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -136,12 +137,16 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         Typeface fontFace = Typeface.createFromAsset(mContext.getAssets(), "iconfont.ttf");
         layoutFineWebviewButtonGoBack.setTypeface(fontFace);
         layoutFineWebviewButtonGoBack.setText(R.string.bar_goback);
+        layoutFineWebviewButtonGoBack.setTextColor(Color.WHITE);
         layoutFineWebviewButtonGoforward.setTypeface(fontFace);
         layoutFineWebviewButtonGoforward.setText(R.string.bar_goforward);
+        layoutFineWebviewButtonGoforward.setTextColor(Color.WHITE);
         layoutFineWebviewButtonRefresh.setTypeface(fontFace);
         layoutFineWebviewButtonRefresh.setText(R.string.bar_refresh);
+        layoutFineWebviewButtonRefresh.setTextColor(Color.WHITE);
         layoutFineWebviewButtonStop.setTypeface(fontFace);
         layoutFineWebviewButtonStop.setText(R.string.bar_stop);
+        layoutFineWebviewButtonStop.setTextColor(Color.WHITE);
     }
     protected void bindData()
     {
