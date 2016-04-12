@@ -51,7 +51,6 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         super(context, attrs);
         this.mContext = context;
         initView();
-
     }
 
     private void initView()
@@ -151,25 +150,26 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
+        if(v.getId()==R.id.layout_fine_webview_button_goforward)
         {
-            case R.id.layout_fine_webview_button_goforward:
-                if(webView.canGoForward()) {
-                    webView.goForward();
-                }
-                break;
-            case R.id.layout_fine_webview_button_refresh:
-                webView.reload();
-                break;
-            case R.id.layout_fine_webview_button_goback:
-                if(webView.canGoBack())
-                {
-                    webView.goBack();
-                }
-                break;
-            case R.id.layout_fine_webview_button_stop:
-                webView.stopLoading();
-                break;
+            if(webView.canGoForward()) {
+                webView.goForward();
+            }
+        }
+        else if(v.getId()==R.id.layout_fine_webview_button_refresh)
+        {
+            webView.reload();
+        }
+        else if(v.getId()==R.id.layout_fine_webview_button_goback)
+        {
+            if(webView.canGoBack())
+            {
+                webView.goBack();
+            }
+        }
+        else if(v.getId()==R.id.layout_fine_webview_button_stop)
+        {
+            webView.stopLoading();
         }
     }
 }
