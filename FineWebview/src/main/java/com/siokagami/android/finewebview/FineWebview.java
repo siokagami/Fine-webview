@@ -17,9 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * Created by SiO鏡 on 2016/3/30.
- */
+
 public  class FineWebview extends LinearLayout implements View.OnClickListener
 {
     public static final int LOAD_DEFAULT = -1;
@@ -153,7 +151,6 @@ public  class FineWebview extends LinearLayout implements View.OnClickListener
         webView.loadUrl(url);
     }
 
-    @Override
     public void onClick(View v) {
         if(v.getId()==R.id.layout_fine_webview_button_goforward)
         {
