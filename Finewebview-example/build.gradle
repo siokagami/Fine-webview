@@ -21,5 +21,5 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':FineWebview')
+    compile 'com.siokagami.android.finewebview:FineWebview:0.5.1'
 }
