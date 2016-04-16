@@ -3,6 +3,7 @@ Webview封装了一些功能，并添加了底部Bar，操作网页前进后退�
 # Gradle
 ```groovy
 compile compile 'com.siokagami.android.finewebview:FineWebview:0.5.1'
+```
 # Usage
 ```java
 import com.siokagami.android.finewebview.FineWebview;
@@ -21,4 +22,4 @@ public class MainActivity extends AppCompatActivity {
         finewebview.setUrl("http://siokagami.me");
     }
 }
- 
+```
