@@ -31,4 +31,4 @@ public class MainActivity extends AppCompatActivity {
 |enableJavaScript()|允许js脚本|
 |getWebview()|获取webview|
 # 说明
- 默认开启底部工具栏，禁止js脚本运行，java与js交互的接口尚在开发中，先可以通过getWebview方法获取到Webview进行操作。
+ 默认开启底部工具栏，禁止js脚本运行，java与js交互的接口尚在开发中，先可以通过getWebview方法获取到Webview进行操作。 
